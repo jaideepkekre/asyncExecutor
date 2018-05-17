@@ -7,18 +7,18 @@ from asyncio_enabler import asyncExecutor
 resp = list()
 
 
-async def work(session, url, id):
+async def work(session, url, uid):
     async with session.get(url) as response:
-        if id == 1:
+        if uid == 1:
             await asyncio.sleep(10)
         js = await response.json()
         resp.append(js)
-        print(id)
+        print(uid)
 
 
-async def runner(url, id):
+async def runner(url, uid):
     async with aiohttp.ClientSession() as session:
-        await work(session, url, id)
+        await work(session, url, uid)
 
 
 asyncExe = asyncExecutor()
