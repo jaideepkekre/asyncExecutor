@@ -6,7 +6,11 @@ class asyncExecutor:
 
     def __init__(self):
         self.tasklist = list()
-        self.loop = self._get_event_loop()
+        try:
+            self.loop = self._get_event_loop()
+        except:
+            self.loop=asyncio.new_event_loop()
+            asyncio.set_event_loop(self.loop)
         self.used=False
        
 
@@ -26,5 +30,5 @@ class asyncExecutor:
                 "This executor has been used!\nPlease instantiate a new one")
         wait_tasks = asyncio.wait(self.tasklist)
         self.loop.run_until_complete(wait_tasks)
-        self.loop.close()
+        # self.loop.close()
         self.used = True
