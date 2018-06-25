@@ -19,6 +19,7 @@ async def runner(url, uid):
         await work(session, url, uid)
 
 
+
 # asyncExe = asyncExecutor()
 
 # asyncExe.addtask(runner('https://jsonplaceholder.typicode.com/posts/1', 1))
@@ -35,9 +36,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
+    global resp
+    resp=[]
     asyncExe = asyncExecutor()
     asyncExe.addtask(runner('https://jsonplaceholder.typicode.com/posts/1', 1))
     asyncExe.addtask(runner('https://jsonplaceholder.typicode.com/posts/1', 2))
     asyncExe.addtask(runner('https://jsonplaceholder.typicode.com/posts/1', 3))
     asyncExe.run()
-    return ("mew")
+    print(resp)
+    return (str(resp))

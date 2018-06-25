@@ -9,6 +9,7 @@ class asyncExecutor:
         try:
             self.loop = self._get_event_loop()
         except:
+            
             self.loop=asyncio.new_event_loop()
             asyncio.set_event_loop(self.loop)
         self.used=False
